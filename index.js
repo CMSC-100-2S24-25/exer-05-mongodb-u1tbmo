@@ -3,6 +3,7 @@ import router from "./router.js"
 
 const PORT = 3000;
 
+// Create express app
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
