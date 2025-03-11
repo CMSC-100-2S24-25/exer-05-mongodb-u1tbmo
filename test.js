@@ -184,9 +184,9 @@ async function removeAllUsersTests() {
 
 // Individual tests below --------------------------------------------------------------------------------------------------------------
 
+// Save a dummy student to the database
 async function saveStudentToDatabase() {
 	return new Promise((resolve, reject) =>
-		// Save a dummy student to the database
 		needle.post(
 			`${URL}${saveStudentEndpoint}`,
 			{
@@ -206,13 +206,13 @@ async function saveStudentToDatabase() {
 	);
 }
 
+// Attempt to save a duplicate student
 async function noDuplicateStudents() {
-	// Saving a duplicate student should not be allowed
 	return await saveStudentToDatabase();
 }
 
+// Attempt to save a student with missing required info
 async function noMissingInfoForSave() {
-	// Saving a student with missing required info is not allowed
 	return new Promise((resolve, reject) =>
 		needle.post(
 			`${URL}${saveStudentEndpoint}`,
@@ -233,8 +233,8 @@ async function noMissingInfoForSave() {
 	);
 }
 
+// Update Clint Salmon to Peter Parker
 async function updateClintSalmon() {
-	// Update Clint Salmon to Peter Parker
 	return new Promise((resolve, reject) =>
 		needle.post(
 			`${URL}${updateStudentEndpoint}`,
@@ -252,6 +252,7 @@ async function updateClintSalmon() {
 	);
 }
 
+// Attempt to change the first name of Clint Salmon to something invalid
 async function noMissingFirstNameForUpdate() {
 	// The first name is required and cannot be null
 	return new Promise((resolve, reject) =>
@@ -271,6 +272,7 @@ async function noMissingFirstNameForUpdate() {
 	);
 }
 
+// Retrieves the data of Clint Salmon
 async function getClintSalmon() {
 	return new Promise((resolve, reject) =>
 		needle.get(`${URL}${getUserEndpoint}?stdnum=5615273380`, (err, res) => {
@@ -283,6 +285,7 @@ async function getClintSalmon() {
 	);
 }
 
+// Attempts to retrieve the data of a non-existent user
 async function userMustExistForGetUser() {
 	return new Promise((resolve, reject) =>
 		needle.get(`${URL}${getUserEndpoint}?stdnum=0000000000`, (err, res) => {
@@ -307,6 +310,7 @@ async function getMembers() {
 	);
 }
 
+// Removes Fancy Godfroy from the database
 async function removeFancyGodfroy() {
 	return new Promise((resolve, reject) =>
 		needle.post(
@@ -325,6 +329,7 @@ async function removeFancyGodfroy() {
 	);
 }
 
+// Attempts to remove a non-existent student from the database
 async function studentMustExistForRemove() {
 	return new Promise((resolve, reject) =>
 		needle.post(
@@ -343,6 +348,7 @@ async function studentMustExistForRemove() {
 	);
 }
 
+// Removes all students from the database
 async function removeAllStudents() {
 	return new Promise((resolve, reject) =>
 		needle.post(`${URL}${removeAllUsersEndpoint}`, {}, (err, res) => {
@@ -355,6 +361,7 @@ async function removeAllStudents() {
 	);
 }
 
+// Attempts to remove from an empty database
 async function dataMustExistForRemoveAll() {
 	return await removeAllStudents();
 }
