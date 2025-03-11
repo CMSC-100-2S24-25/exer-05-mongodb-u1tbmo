@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = "mongodb://127.0.0.127017/StudentDatabase";
+const MONGODB_URI = "mongodb://127.0.0.1:27017/StudentDatabase";
 
 try {
-	connect(MONGODB_URI);
+	await mongoose.connect(MONGODB_URI);
+	console.log("Connected to MongoDB");
 } catch (error) {
 	console.log(error);
 }
