@@ -88,7 +88,7 @@ const updateStudent = async (req, res) => {
 
 // Removes a specific user from the database
 const removeUser = async (req, res) => {
-	// Retrieve student numner
+	// Retrieve the student number from the request body
 	const { stdnum } = req.body;
 	
 	// Delete the Student with that student number
