@@ -90,8 +90,9 @@ const updateStudent = async (req, res) => {
 const removeUser = async (req, res) => {
 	// Retrieve student numner
 	const { stdnum } = req.body;
-
+	
 	// Delete the Student with that student number
+	// Note: A response is sent for consistency and testability
 	try {
 		const result = await Student.deleteOne({ stdnum: stdnum });
 		if (result.deletedCount > 0) {
