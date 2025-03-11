@@ -20,11 +20,11 @@ await resetTests(); // Reset the database to its "original" state (DOES NOT PRES
 
 // * IMPORTANT: Comment/uncomment specific lines that correspond to different tests
 
-// await saveStudentTests(); // Test save functionality
-// await updateStudentTests(); // Test update functionality
-// await getUserTests(); // Get user functionality
-// await removeUserTests(); // Remove functionality
-// await removeAllUsersTests(); // Remove all functionality
+await saveStudentTests(); // Test save functionality
+await updateStudentTests(); // Test update functionality
+await getUserTests(); // Get user functionality
+await removeUserTests(); // Remove functionality
+await removeAllUsersTests(); // Remove all functionality
 
 // Reset ------------------------------------------------------------------------------------------------------------------------------
 
