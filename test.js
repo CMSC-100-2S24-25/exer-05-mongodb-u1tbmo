@@ -298,18 +298,6 @@ async function userMustExistForGetUser() {
 	);
 }
 
-async function getMembers() {
-	return new Promise((resolve, reject) =>
-		needle.post(`${URL}${getMembers}`, (err, res) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(res.body);
-			}
-		}),
-	);
-}
-
 // Removes Fancy Godfroy from the database
 async function removeFancyGodfroy() {
 	return new Promise((resolve, reject) =>
