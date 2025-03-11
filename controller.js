@@ -76,12 +76,16 @@ const updateStudent = async (req, res) => {
 			{ fname: fname, lname: "Parker" },
 			{ runValidators: true },
 		);
+
 		// Check if student was modified
 		if (result.modifiedCount > 0) {
 			return res.send({ updated: true });
 		}
+
+		// There was no student modified
 		return res.send({ updated: false });
 	} catch (error) {
+		// There was an error and no student was modified
 		return res.send({ updated: false });
 	}
 };
@@ -95,11 +99,16 @@ const removeUser = async (req, res) => {
 	// Note: A response is sent for consistency and testability
 	try {
 		const result = await Student.deleteOne({ stdnum: stdnum });
+
+		// Check if a student was deleted
 		if (result.deletedCount > 0) {
 			return res.send({ deleted: true });
 		}
+
+		// There was no student that was deleted
 		return res.send({ deleted: false });
 	} catch (error) {
+		// There was an error and no student was deleted
 		return res.send({ deleted: false });
 	}
 };
@@ -109,11 +118,16 @@ const removeAllUsers = async (req, res) => {
 	// Delete all students from the database
 	try {
 		const result = await Student.deleteMany({});
+
+		// Check if there was at least one student deleted
 		if (result.deletedCount > 0) {
 			return res.send({ deleted: true });
 		}
+
+		// There was no student that was deleted
 		return res.send({ deleted: false });
 	} catch (error) {
+		// There was an error and no student was deleted
 		return res.send({ deleted: false });
 	}
 };
@@ -128,24 +142,27 @@ const getUser = async (req, res) => {
 		return res.send([]);
 	}
 
-	// Respond with the user in an array (singleton) if it exists, otherwise an empty array
 	try {
+		// Respond with the resulting Query object from the database read operation
 		return res.send(await Student.find({ stdnum: stdnum }));
 	} catch (error) {
+		// There was an error and the database cannot be read.
 		return res.send([]);
 	}
 };
 
 // Retrives all users from the database
 const getMembers = async (req, res) => {
-	// Respond with all users in the database
 	try {
+		// Respond with the resulting Query object from the database read operation
 		return res.send(await Student.find({}));
 	} catch (error) {
+		// There was an error and the database cannot be read.
 		return res.send([]);
 	}
 };
 
+// Export controller functions and student model
 export {
 	saveStudent,
 	updateStudent,
