@@ -26,6 +26,8 @@ await getUserTests(); // Get user functionality
 await removeUserTests(); // Remove functionality
 await removeAllUsersTests(); // Remove all functionality
 
+await resetTests(); // Reset the database to its "original" state since all users were removed
+
 // Reset ------------------------------------------------------------------------------------------------------------------------------
 
 async function resetTests() {
