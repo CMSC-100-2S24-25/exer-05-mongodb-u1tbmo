@@ -119,7 +119,22 @@ const removeAllUsers = async (req, res) => {
 };
 
 // Retrieves a user from the database
-const getUser = async (req, res) => {};
+const getUser = async (req, res) => {
+	// Retrieve student number from request query
+	const stdnum = req.query.stdnum;
+
+	// Validate stdnum
+	if (!stdnum) {
+		return res.send([]);
+	}
+
+	// Respond with the user in an array (singleton) if it exists, otherwise an empty array
+	try {
+		return res.send(await Student.find({ stdnum: stdnum }));
+	} catch (error) {
+		return res.send([]);
+	}
+};
 
 // Retrives all users from the database
 const getMembers = async (req, res) => {};
