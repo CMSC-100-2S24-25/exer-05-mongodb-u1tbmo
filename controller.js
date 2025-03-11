@@ -16,12 +16,12 @@ const Student = mongoose.model("Student", {
 	age: Number,
 });
 
-function saveStudent() {}
-function updateStudentFirstName() {}
-function removeUser() {}
-function removeAllUsers() {}
-function getUser() {}
-function getMembers() {}
+const saveStudent = (req, res) => {};
+const updateStudentFirstName = (req, res) => {};
+const removeUser = (req, res) => {};
+const removeAllUsers = (req, res) => {};
+const getUser = (req, res) => {};
+const getMembers = (req, res) => {};
 
 export {
 	saveStudent,
