@@ -137,7 +137,14 @@ const getUser = async (req, res) => {
 };
 
 // Retrives all users from the database
-const getMembers = async (req, res) => {};
+const getMembers = async (req, res) => {
+	// Respond with all users in the database
+	try {
+		return res.send(await Student.find({}));
+	} catch (error) {
+		return res.send([]);
+	}
+};
 
 export {
 	saveStudent,
