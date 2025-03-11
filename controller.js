@@ -90,7 +90,7 @@ const updateStudent = async (req, res) => {
 const removeUser = async (req, res) => {
 	// Retrieve the student number from the request body
 	const { stdnum } = req.body;
-	
+
 	// Delete the Student with that student number
 	// Note: A response is sent for consistency and testability
 	try {
@@ -105,7 +105,18 @@ const removeUser = async (req, res) => {
 };
 
 // Removes all users from the database (dangerous)
-const removeAllUsers = async (req, res) => {};
+const removeAllUsers = async (req, res) => {
+	// Delete all students from the database
+	try {
+		const result = await Student.deleteMany({});
+		if (result.deletedCount > 0) {
+			return res.send({ deleted: true });
+		}
+		return res.send({ deleted: false });
+	} catch (error) {
+		return res.send({ deleted: false });
+	}
+};
 
 // Retrieves a user from the database
 const getUser = async (req, res) => {};
