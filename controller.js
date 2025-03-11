@@ -87,7 +87,21 @@ const updateStudent = async (req, res) => {
 };
 
 // Removes a specific user from the database
-const removeUser = async (req, res) => {};
+const removeUser = async (req, res) => {
+	// Retrieve student numner
+	const { stdnum } = req.body;
+
+	// Delete the Student with that student number
+	try {
+		const result = await Student.deleteOne({ stdnum: stdnum });
+		if (result.deletedCount > 0) {
+			return res.send({ deleted: true });
+		}
+		return res.send({ deleted: false });
+	} catch (error) {
+		return res.send({ deleted: false });
+	}
+};
 
 // Removes all users from the database (dangerous)
 const removeAllUsers = async (req, res) => {};
