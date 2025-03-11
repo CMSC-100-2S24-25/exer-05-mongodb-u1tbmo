@@ -1,6 +1,6 @@
 import {
 	saveStudent,
-	updateStudentFirstName,
+	updateStudent,
 	removeUser,
 	removeAllUsers,
 	getUser,
@@ -10,7 +10,7 @@ import {
 // Create post and get endpoints for the express app
 const router = (app) => {
   app.post("/save-student", saveStudent);
-	app.post("/update", updateStudentFirstName);
+	app.post("/update", updateStudent);
 	app.post("/remove-user", removeUser);
 	app.post("/remove-all-user", removeAllUsers);
 	app.get("/user", getUser);

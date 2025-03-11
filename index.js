@@ -1,5 +1,5 @@
 import express from "express";
-import router from "./router.js"
+import router from "./router.js";
 
 const PORT = 3000;
 
@@ -14,7 +14,7 @@ router(app);
 // Express server
 try {
 	app.listen(PORT);
-	console.log("Connected to server!");
+	console.log(`Listening at port ${3000}.`);
 } catch (error) {
 	console.log(error);
 }

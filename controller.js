@@ -17,14 +17,17 @@ const Student = mongoose.model(
 		stdnum: {
 			type: String,
 			required: [true, "Student number is required."],
+			minLength: 1,
 		},
 		fname: {
 			type: String,
 			required: [true, "First name is required"],
+			minLength: 1,
 		},
 		lname: {
 			type: String,
 			required: [true, "Last name is required"],
+			minLength: 1,
 		},
 		age: {
 			type: Number,
@@ -58,7 +61,30 @@ const saveStudent = async (req, res) => {
 };
 
 // Updates the first name of a student in the database
-const updateStudentFirstName = async (req, res) => {};
+const updateStudent = async (req, res) => {
+	// This is the existing student that will be updated (Clint Salmon)
+	const userToUpdate = "5615273380";
+
+	// Retrieve the first name from the request body
+	const { fname } = req.body;
+
+	// Update "Clint Salmon" to "{fname} Parker" and sure to validate
+	// Note: A response is sent for consistency and testability
+	try {
+		const result = await Student.updateOne(
+			{ stdnum: userToUpdate },
+			{ fname: fname, lname: "Parker" },
+			{ runValidators: true },
+		);
+		// Check if student was modified
+		if (result.modifiedCount > 0) {
+			return res.send({ updated: true });
+		}
+		return res.send({ updated: false });
+	} catch (error) {
+		return res.send({ updated: false });
+	}
+};
 
 // Removes a specific user from the database
 const removeUser = async (req, res) => {};
@@ -74,9 +100,10 @@ const getMembers = async (req, res) => {};
 
 export {
 	saveStudent,
-	updateStudentFirstName,
+	updateStudent,
 	removeUser,
 	removeAllUsers,
 	getUser,
 	getMembers,
+	Student,
 };
